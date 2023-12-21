@@ -16,7 +16,7 @@ public class Price {
 	private LocalDateTime startDate;
 	private LocalDateTime endDate;
 	private Integer priority;
-	private Double price;
+	private Double productPrice;
 	private String currency;
 
 }

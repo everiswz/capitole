@@ -24,9 +24,9 @@ public class PriceJpaRepository implements PriceRepository {
 	}
 
 	@Override
-	public Collection<Price> findByBrandProductAndDate(Integer brandId, Long productId, LocalDateTime selectedDate) {
-		return this.mapper.mapTo(this.repository.findByBrandIdAndProductIdAndStartDateGreaterThanEqualAndEndDateLessThanEqual(brandId, productId,
-				selectedDate, selectedDate));
+	public Collection<Price> findPriorityPriceByBrandProductAndDate(Integer brandId, Long productId, LocalDateTime selectedDate) {
+		return this.mapper.mapTo(this.repository.findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(
+				brandId, productId, selectedDate, selectedDate));
 	}
 
 }

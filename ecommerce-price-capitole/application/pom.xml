@@ -10,17 +10,15 @@
 	</parent>
    	
   	<artifactId>ecommerce-price-capitole-application</artifactId>
-    <name>ecommerce-price-application</name>
-    <description>Capa de aplicación</description>
+    <name>ecommerce-price-capitole-application</name>
+    <description>Capa de aplicación: Casos de uso</description>
     
     <dependencies>
-	
     	<dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>ecommerce-price-capitole-domain</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        
+        </dependency> 
   	</dependencies>
     
 </project>

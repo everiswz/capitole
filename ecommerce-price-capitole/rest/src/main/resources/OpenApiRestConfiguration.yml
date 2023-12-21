@@ -1,0 +1,89 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Price
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:8080/api/v1
+paths:
+  /brand/{brandId}/product/{productId}/price:
+    get:
+      summary: Find product price by brand, product and date
+      operationId: findProductWithPriorityPriceByBrandProductAndDate
+      tags:
+        - product
+      parameters:
+        - name: brandId
+          in: path
+          description: unique brand identification
+          required: true
+          schema:
+           type: integer
+        - name: productId
+          in: path
+          description: unique product identification
+          required: true
+          schema:
+           type: integer
+           format: int64
+        - name: selectedDate
+          in: query
+          description: price consultation date
+          example: "2023-12-21T21:00:00Z"
+          required: true
+          schema:
+           type: string
+           format: date-time
+      responses:
+        '200':
+          description: Product priority price on the date
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/ProductRest"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    ProductRest:
+      type: object
+      required:
+        - brandId
+        - productId
+        - fee
+        - startDate
+        - endDate
+        - price        
+      properties:
+        brandId:
+            type: integer
+        productId:
+            type: integer
+            format: int64
+        fee:
+            type: integer
+        startDate:
+            type: string
+            format: date-time
+        endDate:
+            type: string
+            format: date-time
+        price:
+            type: number
+            format: double
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

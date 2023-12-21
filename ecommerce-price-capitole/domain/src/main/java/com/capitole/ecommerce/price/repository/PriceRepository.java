@@ -7,6 +7,6 @@ import com.capitole.ecommerce.price.Price;
 
 public interface PriceRepository {
 
-	Collection<Price> findByBrandProductAndDate(Integer brandId, Long productId, LocalDateTime selectedDate);
+	Collection<Price> findPriorityPriceByBrandProductAndDate(Integer brandId, Long productId, LocalDateTime selectedDate);
 
 }

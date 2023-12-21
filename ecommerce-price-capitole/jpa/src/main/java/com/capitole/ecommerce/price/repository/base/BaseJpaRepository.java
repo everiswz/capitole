@@ -11,7 +11,7 @@ import com.capitole.ecommerce.price.PriceEntity;
 @Repository
 public interface BaseJpaRepository extends JpaRepository<PriceEntity, Long> {
 
-	List<PriceEntity> findByBrandIdAndProductIdAndStartDateGreaterThanEqualAndEndDateLessThanEqual(Integer brandId, Long productId,
+	List<PriceEntity> findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(Integer brandId, Long productId,
 			LocalDateTime selectedDateOne, LocalDateTime selectedDateTwo);
 
 }

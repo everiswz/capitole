@@ -30,8 +30,12 @@ public class PriceMapper {
 
 	public Price mapTo(PriceEntity source) {
 
+		if (Objects.isNull(source)) {
+			return null;
+		}
+
 		return Price.maker().domainId(source.getId()).brandId(source.getBrandId()).productId(source.getProductId()).fee(source.getFee())
-				.currency(source.getCurrency()).endDate(source.getEndDate()).price(source.getPrice()).priority(source.getPriority())
+				.currency(source.getCurrency()).endDate(source.getEndDate()).productPrice(source.getPrice()).priority(source.getPriority())
 				.startDate(source.getStartDate()).build();
 
 	}

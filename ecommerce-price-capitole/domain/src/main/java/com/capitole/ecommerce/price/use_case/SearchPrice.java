@@ -1,11 +1,11 @@
 package com.capitole.ecommerce.price.use_case;
 
-import java.util.Collection;
+import java.time.LocalDateTime;
 
 import com.capitole.ecommerce.price.Price;
 
 public interface SearchPrice {
 
-	Collection<Price> searchPrices();
+	Price findPriorityPriceByBrandProductAndDate(Integer brandId, Long productId, LocalDateTime selectedDate);
 
 }

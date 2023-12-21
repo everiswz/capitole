@@ -1,13 +1,14 @@
 package com.capitole.ecommerce.price.use_case;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
 import com.capitole.ecommerce.price.Price;
+import com.capitole.ecommerce.price.exception.ProductoNotFoundException;
 import com.capitole.ecommerce.price.repository.PriceRepository;
 
 @Service
@@ -21,8 +22,14 @@ public class SearchPriceImpl implements SearchPrice {
 	}
 
 	@Override
-	public Collection<Price> searchPrices() {
-		return this.pricesRepository.findByBrandProductAndDate(1, Long.valueOf(35455), LocalDateTime.now());
+	public Price findPriorityPriceByBrandProductAndDate(Integer brandId, Long productId, LocalDateTime selectedDate) {
+
+		Objects.requireNonNull(brandId);
+		Objects.requireNonNull(productId);
+		Objects.requireNonNull(selectedDate);
+
+		return this.pricesRepository.findPriorityPriceByBrandProductAndDate(brandId, productId, selectedDate).stream().findFirst()
+				.orElseThrow(ProductoNotFoundException::new);
 	}
 
 }
