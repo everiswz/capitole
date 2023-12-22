@@ -2,6 +2,7 @@ package com.capitole.ecommerce.price.rest.controller;
 
 import java.time.OffsetDateTime;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
@@ -20,6 +21,8 @@ import com.capitole.ecommerce.price.use_case.SearchPrice;
 @RestController
 public class ProductPriceRestController implements BrandApi {
 
+	private static final Logger LOGGER = Logger.getLogger(ProductPriceRestController.class.getName());
+
 	private final SearchPrice searchPrice;
 	private final ProductRestMapper mapper;
 
@@ -36,6 +39,9 @@ public class ProductPriceRestController implements BrandApi {
 		Objects.requireNonNull(brandId);
 		Objects.requireNonNull(productId);
 		Objects.requireNonNull(selectedDate);
+
+		LOGGER.info(new StringBuilder().append("Search priority price by brand (").append(brandId).append("), product (").append(productId)
+				.append(") and date (").append(selectedDate).append(").").toString());
 
 		return ResponseEntity
 				.ok(this.mapper.mapTo(this.searchPrice.findPriorityPriceByBrandProductAndDate(brandId, productId, selectedDate.toLocalDateTime())));

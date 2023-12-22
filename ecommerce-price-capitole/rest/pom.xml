@@ -64,6 +64,7 @@
                 			<modelPackage>com.capitole.ecommerce.price.rest.interfaces.dto</modelPackage>                			
                 			<configOptions>
 								<useSpringBoot3>true</useSpringBoot3>
+								<unhandledException>true</unhandledException>
 								<booleanGetterPrefix>is</booleanGetterPrefix>
 								<interfaceOnly>true</interfaceOnly>
 								<readOnly>true</readOnly>
